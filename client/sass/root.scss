@@ -1,0 +1,33 @@
+@import "./mixins";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body,
+html {
+  height: 100vh;
+}
+
+#__next {
+  height: 100%;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+.container {
+  @include flex(center, center);
+  height: 100%;
+}
+
+@media only screen and (max-width: 428px) {
+  :root {
+    font-size: 52%;
+  }
+}

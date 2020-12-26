@@ -1,5 +1,5 @@
 import Head from "next/head";
-import AuthContainer from "../components/AuthContainer";
+import AuthContainer from "../components/pages/AuthPages/AuthContainer";
 import {
   nameFieldReducer,
   emailFieldReducer,

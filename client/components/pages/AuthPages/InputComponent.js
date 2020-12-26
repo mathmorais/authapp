@@ -1,10 +1,9 @@
-import authStyles from "../sass/auth.module.scss";
+import authStyles from "../../../sass/auth.module.scss";
 import {
   nameAction,
   passwordAction,
   emailAction,
-} from "../actions/inputActions";
-import { useState } from "react";
+} from "../../../actions/inputActions";
 import { useDispatch } from "react-redux";
 
 export default function InputComponent(props) {
@@ -35,6 +34,7 @@ export default function InputComponent(props) {
           placeholder={el.placeholder}
           type={el.type}
           autoComplete={el.autoComplete}
+          required={true}
           onChange={setInputValueToState}
         ></input>
         <i className="material-icons">{el.icon}</i>

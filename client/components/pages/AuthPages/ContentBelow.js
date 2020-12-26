@@ -1,6 +1,6 @@
-import authStyles from "../sass/auth.module.scss";
-import FacebookLogo from "../public/images/Facebook.svg";
-import GoogleLogo from "../public/images/Google.svg";
+import authStyles from "../../../sass/auth.module.scss";
+import FacebookLogo from "../../../public/images/Facebook.svg";
+import GoogleLogo from "../../../public/images/Google.svg";
 import Link from "next/link";
 
 export default function ContentBelow(props) {

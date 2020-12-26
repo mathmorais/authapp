@@ -1,4 +1,4 @@
-import authStyles from "../sass/auth.module.scss";
+import authStyles from "../../../sass/auth.module.scss";
 
 export default function TextContent(props) {
   return (

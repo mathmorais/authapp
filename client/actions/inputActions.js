@@ -14,10 +14,15 @@ const resetRequestState = () => {
   return { type: "RESET" };
 };
 
+const resetAllStates = () => {
+  return { type: "RESET_ALL" };
+};
+
 export {
   nameAction,
   emailAction,
   passwordAction,
   makeRequest,
   resetRequestState,
+  resetAllStates,
 };

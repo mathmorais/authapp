@@ -1,9 +1,10 @@
 import Head from "next/head";
-import AuthContainer from "../components/AuthContainer";
+import AuthContainer from "../components/pages/AuthPages/AuthContainer";
 import {
   nameFieldReducer,
   emailFieldReducer,
   passwordFieldReducer,
+  makeARequest,
 } from "../reducers/inputReducers";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
@@ -12,6 +13,7 @@ const allInputReducers = combineReducers({
   name: nameFieldReducer,
   email: emailFieldReducer,
   password: passwordFieldReducer,
+  request: makeARequest,
 });
 
 const store = createStore(allInputReducers);
@@ -30,7 +32,7 @@ export default function Login() {
         <AuthContainer
           requestMode={"login"}
           title="Login"
-          content=" "
+          content="Fill the fields below"
           types={[
             {
               name: "email",

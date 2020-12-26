@@ -26,6 +26,20 @@
       font-size: $sizeText;
     }
   }
+  .errorMessage {
+    opacity: 0;
+    margin-bottom: 15px;
+    background-color: rgba($color: $colorRed, $alpha: 0.65);
+    padding: 12px 15px;
+    border: 2px solid rgba($color: $colorRed, $alpha: 0.8);
+    border-radius: 10px;
+    h1 {
+      font-weight: 500;
+      color: $colorWhite;
+      font-size: $sizeSubTitle;
+    }
+    transition: opacity 0.25s ease;
+  }
   .formContainer {
     @include flex(center, center);
     margin-bottom: 30px;

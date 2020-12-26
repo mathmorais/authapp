@@ -1,25 +1,43 @@
 import authStyles from "../sass/auth.module.scss";
+import InputComponent from "./InputComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { makeRequest } from "../actions/inputActions";
+import { useState } from "react";
 
 export default function FormContainer(props) {
+  const [errorInputs, setErrorInputs] = useState(false);
+
+  const dispatch = useDispatch();
+  const states = useSelector((state) => {
+    return {
+      name: state.name,
+      email: state.email,
+      password: state.password,
+    };
+  });
+
+  function handleRequest(event) {
+    event.preventDefault();
+
+    for (let state in states) {
+      if (states[state] === "") {
+        return setErrorInputs(true);
+      } else {
+        setErrorInputs(false);
+      }
+    }
+
+    if (errorInputs) {
+      return;
+    } else {
+      dispatch(makeRequest());
+    }
+  }
+
   return (
     <form className={authStyles.formContainer}>
-      {props.types.map((el, index) => {
-        return (
-          <div key={index} className={authStyles.inputElement}>
-            <input
-              aria-label={el.name}
-              name={el.name}
-              minLength={el.name === "Password" ? "8" : "3"}
-              placeholder={el.name}
-              type={el.type}
-              autoComplete={el.autoComplete}
-              required={true}
-            ></input>
-            <i className="material-icons">{el.icon}</i>
-          </div>
-        );
-      })}
-      <button>{props.buttonText}</button>
+      <InputComponent types={props.types}></InputComponent>
+      <button onClick={handleRequest}>{props.buttonText}</button>
     </form>
   );
 }

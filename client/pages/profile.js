@@ -1,14 +1,30 @@
 import Head from "next/head";
+import ProfileContainer from "../components/pages/ProfilePage/ProfileContainer";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Profile() {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (
+      !localStorage.getItem("token") ||
+      localStorage.getItem("token") === ""
+    ) {
+      router.push("/");
+    }
+  }, []);
+
   return (
-    <div>
+    <div className="profile-container">
       <Head>
         <title>Profile</title>
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        ></link>
       </Head>
-      <main>
-        <h1>Profile</h1>
-      </main>
+      <ProfileContainer></ProfileContainer>
     </div>
   );
 }

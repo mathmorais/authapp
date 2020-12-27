@@ -14,7 +14,9 @@ export default function FormContainer(props) {
   return (
     <form className={authStyles.formContainer}>
       <InputComponent types={props.types}></InputComponent>
-      <button onClick={handleRequest}>{props.buttonText}</button>
+      <button title={props.buttonText} onClick={handleRequest}>
+        {props.buttonText}
+      </button>
     </form>
   );
 }

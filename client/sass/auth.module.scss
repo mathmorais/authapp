@@ -101,6 +101,8 @@
     flex-direction: column;
     height: 120px;
     .alternativeLogins {
+      @include flex(initial, center);
+
       svg {
         &:hover {
           fill: rgba(199, 199, 199, 0.637);

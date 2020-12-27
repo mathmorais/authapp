@@ -44,14 +44,17 @@ export default function AuthContainer(props) {
       return setErrorMessage("Fill the fields below");
     }
 
-    axios.post("http://localhost:4000/api/register", user).then((res) => {
-      if (res.data === "USER CREATED") {
-        clearStates();
-        return router.push("/profile");
-      } else {
-        return setErrorMessage(res.data);
-      }
-    });
+    axios
+      .post("http://localhost:4000/api/register", user)
+      .then((res) => {
+        if (res.data === "USER CREATED") {
+          clearStates();
+          return router.push("/login");
+        } else {
+          return setErrorMessage(res.data);
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   function userLogin() {

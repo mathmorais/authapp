@@ -8,8 +8,12 @@ export default function ContentBelow(props) {
     <section className={authStyles.contentBelow}>
       <p>or continue with these social profile</p>
       <div className={authStyles.alternativeLogins}>
-        <FacebookLogo></FacebookLogo>
-        <GoogleLogo></GoogleLogo>
+        <div title="Log-in with Facebook">
+          <FacebookLogo></FacebookLogo>
+        </div>
+        <div title="Log-in with Google">
+          <GoogleLogo></GoogleLogo>
+        </div>
       </div>
       <p>
         {props.authText}

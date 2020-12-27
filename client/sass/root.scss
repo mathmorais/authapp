@@ -11,6 +11,7 @@
 body,
 html {
   height: 100vh;
+  background-color: #fafafb;
 }
 
 #__next {
@@ -24,6 +25,11 @@ html {
 .container {
   @include flex(center, center);
   height: 100%;
+}
+
+.profile-container {
+  max-width: 1440px;
+  margin: auto;
 }
 
 @media only screen and (max-width: 428px) {

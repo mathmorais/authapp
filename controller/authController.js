@@ -37,9 +37,16 @@ module.exports = {
       return res.send("REJECTED");
     }
 
-    const token = jwt.sign({ _id: receivedEmail._id }, process.env.SECRET_KEY, {
+    const signOptions = {
+      algorithm: "RS256",
       expiresIn: "1d",
-    });
+    };
+
+    const token = jwt.sign(
+      { _id: receivedEmail._id },
+      process.env.PRIVATE_KEY,
+      signOptions
+    );
 
     bcrypt
       .compare(user.password, receivedEmail.password)
@@ -51,5 +58,16 @@ module.exports = {
         }
       })
       .catch((err) => console.log(err));
+  },
+
+  tokenDecode: (req, res) => {
+    const token = req.params.token;
+
+    try {
+      const decocedToken = jwt.verify(token, process.env.PUBLIC_KEY);
+      res.send(decocedToken);
+    } catch (err) {
+      res.send("NULL");
+    }
   },
 };

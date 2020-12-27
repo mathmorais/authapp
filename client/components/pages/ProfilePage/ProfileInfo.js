@@ -20,46 +20,7 @@ export default function ProfileInfo(props) {
           <div className={profileStyles.profileIcon}></div>
         </div>
       </div>
-      <div className={profileStyles.infoRow}>
-        <div className={profileStyles.rightSideContent}>
-          <h2>Name</h2>
-        </div>
-        <div className={profileStyles.leftSideContent}>
-          <h1>Profile Name</h1>
-        </div>
-      </div>
-      <div className={profileStyles.infoRow}>
-        <div className={profileStyles.rightSideContent}>
-          <h2>Bio</h2>
-        </div>
-        <div className={profileStyles.leftSideContent}>
-          <h1>I am a software developer and a big fan of devchallenges...</h1>
-        </div>
-      </div>
-      <div className={profileStyles.infoRow}>
-        <div className={profileStyles.rightSideContent}>
-          <h2>Phone</h2>
-        </div>
-        <div className={profileStyles.leftSideContent}>
-          <h1>908249274292</h1>
-        </div>
-      </div>
-      <div className={profileStyles.infoRow}>
-        <div className={profileStyles.rightSideContent}>
-          <h2>Email</h2>
-        </div>
-        <div className={profileStyles.leftSideContent}>
-          <h1>xanthe.neal@gmail.com</h1>
-        </div>
-      </div>
-      <div className={profileStyles.infoRow}>
-        <div className={profileStyles.rightSideContent}>
-          <h2>Password</h2>
-        </div>
-        <div className={profileStyles.leftSideContent}>
-          <h1>************</h1>
-        </div>
-      </div>
+      {props.WriteUserData()}
     </section>
   );
 }

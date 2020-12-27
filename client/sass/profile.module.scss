@@ -4,29 +4,91 @@
 .profileIcon {
   height: 45px;
   width: 45px;
-  margin-right: 13px;
   background-color: $colorGray;
   border-radius: 8px;
 }
 
 .headerContainer {
   @include flex(space-between, center);
+  position: relative;
   padding: 27px 15px;
   margin-bottom: 45px;
+  .dropDownContainer {
+    position: absolute;
+    transform: translateY(-20px);
+    pointer-events: none;
+    opacity: 0;
+    bottom: -140px;
+    right: 0;
+    background-color: $colorWhite;
+    border: 1px solid $colorLightGray;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: transform 0.25s ease, opacity 0.25s ease-in;
+    .pathOptions {
+      .pathOptionsElement {
+        @include flex(flex-start, center);
+        &:hover {
+          background-color: $colorLightGray;
+        }
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        color: $colorBlack;
+        padding: 3px 0;
+        padding: 8px 0;
+        padding-right: 40px;
+        padding-left: 15px;
+        border-radius: 8px;
+        margin-bottom: 5px;
+        p {
+          height: 19px;
+          font-size: 12px;
+          color: $colorBlack;
+          font-weight: 500;
+          margin-left: 10px;
+        }
+        i {
+          font-size: 20px;
+        }
+      }
+      margin-bottom: 5px;
+    }
+    .logoutButton {
+      @extend .pathOptions;
+      margin-top: 10px;
+      .pathOptionsElement {
+        &:hover {
+          background-color: $colorRed;
+          color: $colorWhite;
+        }
+        &:hover p {
+          color: $colorWhite;
+        }
+        p {
+          color: $colorRed;
+          transition: color 0.2s ease;
+        }
+        color: $colorRed;
+      }
+    }
+  }
+
   .profileIconContainer {
     @include flex(initial, center);
-    width: 185px;
 
     p {
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-size: 12px;
       font-weight: 700;
       margin-right: 25px;
+      margin-left: 15px;
     }
     i {
-      &:hover {
-        transform-origin: top;
-        transform: translateY(5px);
-      }
+      user-select: none;
+
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -108,10 +170,13 @@
           font-weight: 500;
           font-size: $sizeText;
         }
-        margin-right: 180px;
+        margin-right: clamp(150px, 20vw, 240px);
       }
       .leftSideContent {
+        overflow: hidden;
         h1 {
+          text-overflow: ellipsis;
+          overflow: hidden;
           color: $colorBlack;
           font-size: $sizeSubTitle;
           font-weight: 500;
@@ -120,6 +185,47 @@
       .profileIcon {
         height: 72px;
         width: 72px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .headerContainer {
+    margin-bottom: 5px;
+    .logo {
+      svg {
+        width: 165px;
+      }
+    }
+    .profileIconContainer {
+      p {
+        display: none;
+      }
+      i {
+        display: none;
+      }
+    }
+  }
+  .profileMainContainer {
+    .profileInfoContainer {
+      width: 100%;
+      border: none;
+      .infoHeader {
+        padding: 28px 15px;
+        .headerText {
+          p {
+            width: 75%;
+          }
+        }
+      }
+      .infoRow {
+        justify-content: space-between;
+        border-top: initial;
+        border-bottom: 1px solid $colorLightGray;
+        .rightSideContent {
+          margin: 0;
+        }
       }
     }
   }

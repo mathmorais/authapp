@@ -1,20 +1,25 @@
 import Head from "next/head";
-import ProfileContainer from "../components/pages/ProfilePage/ProfileContainer";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { userStorageReducer } from "../reducers/profileReducer";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import Header from "../components/pages/ProfilePage/Header";
+import ProfileEdit from "../components/pages/ProfilePage/ProfileEdit";
 
 export default function Profile() {
   const router = useRouter();
   const store = createStore(userStorageReducer);
 
-  // Check if has a token on localstorage
-  if (process.browser) {
-    localStorage.getItem("token") ? null : router.push("/login");
-  }
+  useEffect(() => {
+    if (
+      !localStorage.getItem("token") ||
+      localStorage.getItem("token") === ""
+    ) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <Provider store={store}>
@@ -27,7 +32,7 @@ export default function Profile() {
           ></link>
         </Head>
         <Header></Header>
-        <ProfileContainer></ProfileContainer>
+        <ProfileEdit></ProfileEdit>
       </div>
     </Provider>
   );

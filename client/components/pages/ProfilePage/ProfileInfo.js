@@ -1,3 +1,4 @@
+import Link from "next/link";
 import profileStyles from "../../../sass/profile.module.scss";
 
 export default function ProfileInfo(props) {
@@ -9,7 +10,9 @@ export default function ProfileInfo(props) {
           <p>Some info may be visible to other people</p>
         </div>
         <div className={profileStyles.editButton}>
-          <button>Edit</button>
+          <Link href={"/edit"}>
+            <button>Edit</button>
+          </Link>
         </div>
       </header>
       <div className={profileStyles.infoRow}>

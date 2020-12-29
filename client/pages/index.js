@@ -39,21 +39,18 @@ export default function Home() {
               placeholder: "Name",
               type: "text",
               icon: "account_box",
-              autoComplete: "username",
             },
             {
               name: "email",
               placeholder: "Email",
               type: "email",
               icon: "email",
-              autoComplete: "email",
             },
             {
               name: "password",
               placeholder: "Password",
               type: "password",
               icon: "lock",
-              autoComplete: "current-password",
             },
           ]}
           buttonText={"Start coding now"}

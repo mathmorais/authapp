@@ -1,35 +1,8 @@
 import profileStyles from "../../../sass/profile.module.scss";
 import ProfileInfo from "./ProfileInfo";
-import { useEffect, useState } from "react";
-import { setStorage } from "../../../actions/profileActions";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-export default function ProfileMain(props) {
-  const dispatch = useDispatch();
+import { useSelector, useDispatch } from "react-redux";
+export default function ProfileMain() {
   const storageState = useSelector((state) => state);
-
-  // Decode the token from localStorage
-  useEffect(() => {
-    const storageToken = localStorage.getItem("token");
-    axios.get(`http://localhost:4000/api/token/${storageToken}`).then((res) => {
-      getUserData(res.data._id);
-    });
-  }, []);
-
-  // Get an User object from the ID of the Token decoded
-  async function getUserData(id) {
-    const userID = await id;
-    try {
-      axios.get(`http://localhost:4000/api/get/${userID}`).then((res) => {
-        if (res.status === 200) {
-          dispatch(setStorage(res.data));
-          return WriteUserData();
-        }
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   // Write and show on screen the content of User object
   function WriteUserData() {
@@ -59,8 +32,9 @@ export default function ProfileMain(props) {
     for (let key in obj) {
       array.push({ [key]: obj[key] });
     }
-    array = array.filter((el) => !el._id).slice(0, 4);
-    return array;
+    return (array = array.filter((el) => {
+      return !el.password && !el._id;
+    }));
   }
 
   return (

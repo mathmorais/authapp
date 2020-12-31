@@ -2,15 +2,21 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { userStorageReducer } from "../reducers/profileReducer";
+import { globalImageReducer } from "../reducers/globalImageReducer";
 
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import Header from "../components/pages/ProfilePage/Header";
 import ProfileEdit from "../components/pages/ProfilePage/ProfileEdit";
 
 export default function Profile() {
   const router = useRouter();
-  const store = createStore(userStorageReducer);
+  const store = createStore(
+    combineReducers({
+      storage: userStorageReducer,
+      globalImageURL: globalImageReducer,
+    })
+  );
 
   useEffect(() => {
     if (

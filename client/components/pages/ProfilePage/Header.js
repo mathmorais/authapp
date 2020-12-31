@@ -2,43 +2,72 @@ import Logo from "../../../public/images/devchallenges.svg";
 import profileStyles from "../../../sass/profile.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setStorage } from "../../../actions/profileActions";
-import Link from "next/link";
+import { setImageUrl } from "../../../actions/globalImageAction";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import axios from "axios";
 
 export default function Header() {
-  const router = useRouter();
   const dispatch = useDispatch();
-  const storageState = useSelector((state) => state);
+  const storageState = useSelector((state) => state.storage);
+  const globalImageState = useSelector((state) => state.globalImageURL);
+
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     if (process.browser) {
-      decodeLocalStorage();
+      decodeLocalStorage(getUserData);
     }
   }, []);
 
+  useEffect(() => {
+    generateProfileImageURL();
+  }, [storageState]);
+
   // Decode the token from localStorage
-  function decodeLocalStorage() {
+  function decodeLocalStorage(callback) {
     const storageToken = localStorage.getItem("token");
     axios.get(`http://localhost:4000/api/token/${storageToken}`).then((res) => {
-      getUserData(res.data._id);
+      callback(res.data._id);
     });
   }
 
   // Get an User object from the ID of the Token decoded
   async function getUserData(id) {
     const userID = await id;
-    try {
-      axios.get(`http://localhost:4000/api/get/${userID}`).then((res) => {
-        if (res.status === 200) {
-          dispatch(setStorage(res.data));
+
+    axios.get(`http://localhost:4000/api/get/${userID}`).then((res) => {
+      if (res.status === 200) {
+        delete res.data.password;
+        dispatch(setStorage({ ...res.data, url: "" }));
+      }
+    });
+  }
+
+  async function generateProfileImageURL() {
+    if (storageState && storageState.file) {
+      if (!globalImageState) {
+        const imagedata = await storageState.file.dataB64;
+        const blob = await createBlobFromData(imagedata);
+        const url = URL.createObjectURL(blob);
+        dispatch(setImageUrl(url));
+      } else {
+        return globalImageState;
+      }
+    }
+  }
+
+  function createBlobFromData(data) {
+    const result = new Promise((resolve, reject) => {
+      fetch(data).then((res) => {
+        if (res) {
+          return resolve(res.blob());
+        } else {
+          return reject();
         }
       });
-    } catch (err) {
-      console.log(err);
-    }
+    });
+    return result;
   }
 
   if (storageState) {
@@ -48,7 +77,10 @@ export default function Header() {
           <Logo></Logo>
         </div>
         <div className={profileStyles.profileIconContainer}>
-          <div className={profileStyles.profileIcon}></div>
+          <img
+            src={globalImageState}
+            className={profileStyles.profileIcon}
+          ></img>
           <p>{storageState.name}</p>
           <i
             onClick={() => {

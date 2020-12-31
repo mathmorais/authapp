@@ -19,8 +19,10 @@ module.exports = {
       }
     }
 
-    await UserModel.findOneAndUpdate(
-      req.body.id,
+    console.log(req.body._id);
+
+    await UserModel.findByIdAndUpdate(
+      req.body._id,
       { $set: req.body },
       { upsert: true },
       (err) => {

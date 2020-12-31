@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    file: { type: Object },
+    file: {
+      dataB64: { type: String },
+      url: { type: String },
+    },
     bio: { type: String },
     phone: { type: String },
     email: { type: String, required: true },

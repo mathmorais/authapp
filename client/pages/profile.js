@@ -2,14 +2,20 @@ import Head from "next/head";
 import ProfileContainer from "../components/pages/ProfilePage/ProfileContainer";
 import { useRouter } from "next/router";
 import { userStorageReducer } from "../reducers/profileReducer";
+import { globalImageReducer } from "../reducers/globalImageReducer";
 
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import Header from "../components/pages/ProfilePage/Header";
 
 export default function Profile() {
   const router = useRouter();
-  const store = createStore(userStorageReducer);
+  const store = createStore(
+    combineReducers({
+      storage: userStorageReducer,
+      globalImageURL: globalImageReducer,
+    })
+  );
 
   // Check if has a token on localstorage
   if (process.browser) {

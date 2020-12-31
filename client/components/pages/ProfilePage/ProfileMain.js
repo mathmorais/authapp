@@ -1,13 +1,14 @@
 import profileStyles from "../../../sass/profile.module.scss";
 import ProfileInfo from "./ProfileInfo";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 export default function ProfileMain() {
-  const storageState = useSelector((state) => state);
+  const storageState = useSelector((state) => state.storage);
 
   // Write and show on screen the content of User object
   function WriteUserData() {
     if (storageState) {
-      const userDataArray = parseAndFilter(storageState);
+      const copyStorageState = { ...storageState };
+      const userDataArray = parseArray(copyStorageState);
       return userDataArray.map((element, index) => {
         const objectKey = Object.keys(element);
         return (
@@ -27,14 +28,20 @@ export default function ProfileMain() {
   }
 
   // parse user object to a iterable array
-  function parseAndFilter(obj) {
+  function parseArray(obj) {
     let array = [];
+
+    delete obj.url;
+
     for (let key in obj) {
       array.push({ [key]: obj[key] });
     }
-    return (array = array.filter((el) => {
-      return !el.password && !el._id;
-    }));
+
+    array = array.filter((el) => {
+      return !el._id && !el.file;
+    });
+
+    return array;
   }
 
   return (

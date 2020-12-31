@@ -4,14 +4,13 @@
 .profileIcon {
   height: 45px;
   width: 45px;
-  background-color: $colorGray;
-  border-radius: 8px;
+  border-radius: 100%;
 }
 
 .headerContainer {
   @include flex(space-between, center);
   position: relative;
-  padding: 27px 15px;
+  padding: 27px 5px;
   margin-bottom: 45px;
   .dropDownContainer {
     position: absolute;

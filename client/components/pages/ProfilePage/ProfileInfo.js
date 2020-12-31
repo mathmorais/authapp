@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import profileStyles from "../../../sass/profile.module.scss";
 
 export default function ProfileInfo(props) {
+  const globalImageState = useSelector((state) => state.globalImageURL);
+
   return (
     <section className={profileStyles.profileInfoContainer}>
       <header className={profileStyles.infoHeader}>
@@ -20,7 +23,10 @@ export default function ProfileInfo(props) {
           <h2>Photo</h2>
         </div>
         <div className={profileStyles.leftSideContent}>
-          <div className={profileStyles.profileIcon}></div>
+          <img
+            src={globalImageState}
+            className={profileStyles.profileIcon}
+          ></img>
         </div>
       </div>
       {props.WriteUserData()}

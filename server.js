@@ -18,6 +18,9 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.json({ limit: "325kb" }));
+app.use(express.urlencoded({ limit: "325kb", extended: true }));
+
 app.use("/api", express.json(), api_route);
 
 app.listen(process.env.PORT, () => {

@@ -7,6 +7,7 @@ import { globalImageReducer } from "../reducers/globalImageReducer";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import Header from "../components/pages/ProfilePage/Header";
+import Footer from "../components/global/Footer";
 
 export default function Profile() {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function Profile() {
         </Head>
         <Header></Header>
         <ProfileContainer></ProfileContainer>
+        <Footer width={"70%"}></Footer>
       </div>
     </Provider>
   );

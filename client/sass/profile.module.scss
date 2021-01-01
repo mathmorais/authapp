@@ -10,8 +10,12 @@
 .headerContainer {
   @include flex(space-between, center);
   position: relative;
-  padding: 27px 5px;
+  padding: 27px 10px;
   margin-bottom: 45px;
+  svg {
+    width: 150px;
+    height: 30px;
+  }
   .dropDownContainer {
     position: absolute;
     transform: translateY(-20px);

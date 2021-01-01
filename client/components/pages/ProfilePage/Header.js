@@ -1,4 +1,4 @@
-import Logo from "../../../public/images/devchallenges.svg";
+import Logo from "../../../public/images/devchallenges-light.svg";
 import profileStyles from "../../../sass/profile.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setStorage } from "../../../actions/profileActions";
@@ -27,16 +27,18 @@ export default function Header() {
   // Decode the token from localStorage
   function decodeLocalStorage(callback) {
     const storageToken = localStorage.getItem("token");
-    axios.get(`http://localhost:4000/api/token/${storageToken}`).then((res) => {
-      callback(res.data._id);
-    });
+    axios
+      .get(`http://192.168.0.13:4000/api/token/${storageToken}`)
+      .then((res) => {
+        callback(res.data._id);
+      });
   }
 
   // Get an User object from the ID of the Token decoded
   async function getUserData(id) {
     const userID = await id;
 
-    axios.get(`http://localhost:4000/api/get/${userID}`).then((res) => {
+    axios.get(`http://192.168.0.13:4000/api/get/${userID}`).then((res) => {
       if (res.status === 200) {
         delete res.data.password;
         dispatch(setStorage({ ...res.data, url: "" }));

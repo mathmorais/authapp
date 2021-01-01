@@ -47,7 +47,7 @@ export default function ProfileEdit() {
     if (storageState) {
       const userID = await storageState.id;
       axios
-        .post("http://localhost:4000/api/update", {
+        .post("http://192.168.0.13:4000/api/update", {
           _id: userID,
           ...inputFields,
         })

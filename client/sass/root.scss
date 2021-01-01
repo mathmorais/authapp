@@ -1,4 +1,5 @@
 @import "./mixins";
+@import "./vars";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;700&display=swap");
 
 * {
@@ -8,8 +9,7 @@
   font-family: "Noto Sans JP", sans-serif;
 }
 
-body,
-html {
+body {
   height: 100vh;
   background-color: #fafafb;
 }
@@ -24,6 +24,7 @@ html {
 
 .container {
   @include flex(center, center);
+  flex-direction: column;
   height: 100%;
 }
 
@@ -41,5 +42,32 @@ html {
 @media only screen and (max-width: 428px) {
   :root {
     font-size: 52%;
+  }
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  body,
+  div {
+    background-color: #1f1f20 !important;
+    border-color: #828282 !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  i,
+  a,
+  label,
+  p {
+    color: #f8ffff !important;
+  }
+
+  input,
+  textarea,
+  button {
+    color: $colorWhite;
+    border: 1px solid #828282 !important;
+    background-color: #121212 !important;
   }
 }

@@ -8,6 +8,7 @@ import {
 } from "../reducers/inputReducers";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
+import Footer from "../components/global/Footer";
 
 const allInputReducers = combineReducers({
   name: nameFieldReducer,
@@ -54,6 +55,7 @@ export default function Login() {
           authPath={"/"}
           authText={"Don’t have an account yet? "}
         ></AuthContainer>
+        <Footer width={"33%"} maxWidth={"700px"} minWidth={"475px"}></Footer>
       </div>
     </Provider>
   );

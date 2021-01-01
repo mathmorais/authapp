@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const api_route = require("./routes/api_route");
+const api_router = require("./routes/api_router");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json({ limit: "325kb" }));
 app.use(express.urlencoded({ limit: "325kb", extended: true }));
 
-app.use("/api", express.json(), api_route);
+app.use("/api", express.json(), api_router);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on PORT ${process.env.PORT}`);

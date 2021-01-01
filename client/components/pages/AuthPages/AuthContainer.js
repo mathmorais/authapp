@@ -1,6 +1,6 @@
 import authStyles from "../../../sass/auth.module.scss";
 import FormContainer from "./FormContainer";
-import Logo from "../../../public/images/devchallenges.svg";
+import Logo from "../../../public/images/devchallenges-light.svg";
 import ContentBelow from "./ContentBelow";
 import TextContent from "./TextContent";
 import { useState, useEffect } from "react";
@@ -33,6 +33,7 @@ export default function AuthContainer(props) {
 
   function userRegister() {
     dispatch(resetRequestState());
+    setErrorMessage(null);
 
     const user = {
       name: states.name,
@@ -40,12 +41,16 @@ export default function AuthContainer(props) {
       password: states.password,
     };
 
-    if (checkIfStatesIsEmpty(user)) {
+    if (checkFieldState(user)) {
       return setErrorMessage("Fill the fields below");
     }
 
+    if (user.password.length < 8) {
+      return setErrorMessage("Password must be at least 8 characters");
+    }
+
     axios
-      .post("http://localhost:4000/api/register", user)
+      .post("http://192.168.0.13:4000/api/register", user)
       .then((res) => {
         if (res.data === "USER CREATED") {
           clearStates();
@@ -59,17 +64,18 @@ export default function AuthContainer(props) {
 
   function userLogin() {
     dispatch(resetRequestState());
+    setErrorMessage(null);
 
     const user = {
       email: states.email,
       password: states.password,
     };
 
-    if (checkIfStatesIsEmpty(user)) {
+    if (checkFieldState(user)) {
       return setErrorMessage("Fill the fields below");
     }
 
-    axios.post("http://localhost:4000/api/login", user).then((res) => {
+    axios.post("http://192.168.0.13:4000/api/login", user).then((res) => {
       const tokenAuth = res.data.token;
 
       if (res.data.message === "OK") {
@@ -86,7 +92,7 @@ export default function AuthContainer(props) {
     return dispatch(resetAllStates());
   }
 
-  function checkIfStatesIsEmpty(user) {
+  function checkFieldState(user) {
     for (let state in user) {
       return user[state] === "";
     }
@@ -113,8 +119,8 @@ export default function AuthContainer(props) {
 
   return (
     <main className={authStyles.loginContainer}>
-      <div className={authStyles.logo}>
-        <Logo></Logo>
+      <div className={`${authStyles.logo}`}>
+        <Logo className={"colorTheme"}></Logo>
       </div>
       <TextContent title={props.title} content={props.content}></TextContent>
       <div

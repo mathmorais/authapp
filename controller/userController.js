@@ -19,8 +19,6 @@ module.exports = {
       }
     }
 
-    console.log(req.body._id);
-
     await UserModel.findByIdAndUpdate(
       req.body._id,
       { $set: req.body },

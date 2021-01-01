@@ -8,6 +8,7 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import Header from "../components/pages/ProfilePage/Header";
 import ProfileEdit from "../components/pages/ProfilePage/ProfileEdit";
+import Footer from "../components/global/Footer";
 
 export default function Profile() {
   const router = useRouter();
@@ -39,6 +40,7 @@ export default function Profile() {
         </Head>
         <Header></Header>
         <ProfileEdit></ProfileEdit>
+        <Footer width={"70%"}></Footer>
       </div>
     </Provider>
   );

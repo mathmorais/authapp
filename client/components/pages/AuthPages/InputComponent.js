@@ -30,7 +30,6 @@ export default function InputComponent(props) {
         <input
           aria-label={el.name}
           name={el.name}
-          minLength={el.name === "password" ? "8" : "3"}
           placeholder={el.placeholder}
           type={el.type}
           autoComplete={el.autoComplete}

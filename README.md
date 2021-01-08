@@ -2,8 +2,6 @@
   <h2>Auth app</h2>
 </div>
 
-#
-
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
 </div>
@@ -86,6 +84,8 @@ $ npm run app
 ```
 
 #### After that the client will be running on the http://localhost:3000
+
+#### If you want to change the PORT, just modify the .env file
 
 ## Contact
 

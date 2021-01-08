@@ -1,5 +1,5 @@
 <div align="center">
-<img height=50 src="./images/my_unsplash_logo.svg">
+  <h2>Auth app</h2>
 </div>
 
 #
@@ -10,7 +10,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP">
+    <a href="https://devchallenges.io/challenges/N1fvBjQfhlkctmwj1tnw">
       Challenge
     </a>
   </h3>
@@ -22,39 +22,49 @@
 <img alt="licence-badge-npm" src="https://img.shields.io/static/v1?label=npm&message=v6.14.9&color=green">
 </div>
 
-## 📝 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
+  - [About](#about)
+  - [Tecnologies used](#technologies)
 - [How to use](#how-to-use)
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
 
 ## Overview
 
-![preview](./images/preview.gif)
+#### Register page
+
+<img alt="register photo" src="./page_photos/register_page.png"/>
+
+#### Profile page
+
+<img alt="profile photo" src="./page_photos/profile_page.png"/>
+
+#### Edit page
+
+<img alt="edit photo" src="./page_photos/edit_page.png"/>
 
 ### About
 
-The project consists of a clone of the Unsplash photo site.
+This project is a authentication page to register, login and edit a profile.
 
-In **My unsplash** you can register a personal gallery where you can add and remove photos through Urls of photos from the Unsplash website
+In the profile page you can see your photo, name, bio and email. You can edit that field in the edit page.
 
-In this project I learned and improved a lot, mainly, in the way I dealt with my APIs.
+The Server-side was created using [nodejs](https://nodejs.org/) and [express](https://prettier.io/). for authention i use [jsonwebtoken](https://jwt.io/) and the database [mongodb](https://www.mongodb.com/). To encrypt the passwords i used [bcrypt](https://www.npmjs.com/package/bcrypt).
 
-This is my first React project here on github, I hope you like it :)
+I've learned a lot about authentication in this project,
+I recommend you try to recreate too :)
 
-### Technologies used
+### Technologies
 
 - [NextJS](https://nextjs.org/)
-- [NodeJS](https://nodejs.org/en/)
-- [Express](https://expressjs.com/)
+- [NodeJS](https://nodejs.org/)
+- [Express](https://prettier.io/)
+- [JWT](https://jwt.io/)
+- [Axios](https://github.com/axios/axios)
 - [MongoDB](https://www.mongodb.com/)
-
-## Features
-
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP) was to build an application to complete the given user stories.
+- [Mongoose](https://mongoosejs.com/)
+- [Bcryptjs](https://eslint.org/)
 
 ## How To Use
 
@@ -64,23 +74,20 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 # Clone this repository
 $ git clone https://github.com/mathmorais/authapp
 
-# Install dependencies
+# Enter in the root folder
+$ cd authapp
+
+# Install dependencies, will generate a build too in the postisntall
 $ npm install
 
-# Run the app, do this command on root folder
-$ npm run dev_init
+# Run the client-side and the server-side of the site
+$ npm run app
+
 ```
 
-## Acknowledgements
-
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-
-## Contribute
-
-I don't know much about contributions on github but, if you find any issues, or have a suggestion, I would love to know :)
+#### After that the client will be running on the http://localhost:3000
 
 ## Contact
 
 - GitHub [@mathmorais](https://github.com/mathmorais)
+- Email [gm80648@gmail.com](mailto:gm80648@gmail.com)

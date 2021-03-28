@@ -83,10 +83,6 @@ $ npm run app
 
 ```
 
-#### After that the client will be running on the http://localhost:3000
-
-#### If you want to change the PORT, just modify the .env file
-
 ## Contact
 
 - GitHub [@mathmorais](https://github.com/mathmorais)
